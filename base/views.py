@@ -62,7 +62,6 @@ class DataInfoView(APIView):
                 'status': status,
                 'temperatureInfo':temperature_info,
             }
-            print(data)
             return Response(data={'msg': '查询成功', 'data': data})
         except Exception as e:
             return Response(data={'msg': '查询失败', 'error': e,'code': 1005})

@@ -15,9 +15,8 @@ def login():
         "accept":"application/json, text/plain, */*",
         "accept-encoding":"gzip, deflate, br, zstd"
     }
-    res=requests.post(url='https://app.bjjttec.com/auth/login/',json=payload,headers=headers)
+    res=requests.post(url='https://app.bjjttec.com/auth/login/',json=payload,headers=headers,verify=False)
     content=res.json()
-    print(content['data']['token'])
     return content['data']['token']
 
 def get_data(token):
@@ -32,7 +31,7 @@ def get_data(token):
         "token":token,
         "cookie":"sessionid=3mcvc6lqtrmbjscb9ws2zyekr7zwaxna"
     }
-    res=requests.post(url="https://app.bjjttec.com/base/history/data/",json=payload,headers=headers)
+    res=requests.post(url="https://app.bjjttec.com/base/history/data/",json=payload,headers=headers,verify=False)
     data=res.json()
     data_list=[]
     for item in data['data']['list']:
@@ -56,7 +55,7 @@ def device_status(token):
         "token":token,
         "cookie":"sessionid=3mcvc6lqtrmbjscb9ws2zyekr7zwaxna"
     }
-    res=requests.post(url="https://app.bjjttec.com/base/device/list/",json=payload,headers=headers)
+    res=requests.post(url="https://app.bjjttec.com/base/device/list/",json=payload,headers=headers,verify=False)
     data=res.json()
     return data['data']['list'][0]['deviceStatus']
 def weather():
